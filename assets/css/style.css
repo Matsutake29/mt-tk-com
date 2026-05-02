@@ -269,8 +269,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.6875rem;
   font-weight: 500;
   color: var(--c-text-mute);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* hover はカードの動きと border のみで反応を表現
