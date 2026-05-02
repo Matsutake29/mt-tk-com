@@ -319,6 +319,39 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ======================================
+   Dark Mode (OS preference)
+   ====================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-main: #7AB8D9;
+    --c-dark: #5A98C0;
+    --c-base: #0D1117;
+    --c-sub-bg: #161B22;
+    --c-text: #E6EDF3;
+    --c-text-mute: #8B949E;
+    --c-accent: #6BB4F0;
+    --c-border: #30363D;
+  }
+
+  /* Main card: brighten gradient so it stays visible on dark bg */
+  .c-card--main {
+    background: linear-gradient(180deg, #155A7A 0%, #0A4A62 100%);
+  }
+
+  .c-card--main:hover {
+    background: linear-gradient(180deg, #1B6E94 0%, #155A7A 100%);
+  }
+
+  /* SNS icon brand-compliant alternates for dark backgrounds
+     X: official guideline allows white on dark
+     GitHub: official guideline recommends white on dark
+     Zenn: brand color (#3EA8FF) stays */
+  .c-card--icon-x      { color: #FFFFFF; }
+  .c-card--icon-github { color: #FFFFFF; }
+}
+
+/* ======================================
    Responsive: Mobile (<= 767px)
    ====================================== */
 
