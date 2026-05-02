@@ -349,6 +349,12 @@ a { color: inherit; text-decoration: none; }
      Zenn: brand color (#3EA8FF) stays */
   .c-card--icon-x      { color: #FFFFFF; }
   .c-card--icon-github { color: #FFFFFF; }
+
+  /* Avatar: illustration has black linework + light skin tones,
+     so it disappears into dark backgrounds. Add a white circle backdrop. */
+  .l-hub__avatar {
+    background: #FFFFFF;
+  }
 }
 
 /* ======================================
