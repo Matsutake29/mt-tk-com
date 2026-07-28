@@ -191,7 +191,7 @@ a { color: inherit; text-decoration: none; }
   transform: translateX(4px);
 }
 
-/* ---- Card: sub (Frontend) ---- */
+/* ---- Card: sub (Products) ---- */
 
 .c-card--sub {
   background: var(--c-sub-bg);
@@ -202,7 +202,6 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   text-align: center;
   gap: 6px;
-  cursor: default;
 }
 
 .c-card--sub .c-card__motif {
@@ -232,6 +231,8 @@ a { color: inherit; text-decoration: none; }
 
 .c-card--sub:hover {
   background: #FAFAFA;
+  border-color: var(--c-main);
+  transform: translateY(-2px);
 }
 
 .c-card--sub:hover .c-card__motif {
@@ -354,6 +355,20 @@ a { color: inherit; text-decoration: none; }
      so it disappears into dark backgrounds. Add a white circle backdrop. */
   .l-hub__avatar {
     background: #FFFFFF;
+  }
+
+  /* Sub card: --c-sub-bg (#161B22) sits too close to the page background
+     (#0D1117) once this card became a real link. Lift it so it reads as
+     something you can press. */
+  .c-card--sub {
+    background: #1A2029;
+    border-color: #3D4653;
+  }
+
+  /* The light-mode hover (#FAFAFA) turns the card pure white
+     on a dark background. Lift it only slightly instead. */
+  .c-card--sub:hover {
+    background: #222A35;
   }
 }
 

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plate Calculator — バーベルのプレート計算アプリ | 松尾 赳治</title>
+<meta name="description" content="目標の重量を入れると、バーベルの片側に着けるプレートの構成を計算するWebアプリ。パワーリフティングの競技者本人が、自分で使うために作りました。React / TypeScript 製。">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mt-tk.com/plate-calculator/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mt-tk.com/plate-calculator/">
+<meta property="og:title" content="Plate Calculator — バーベルのプレート計算アプリ">
+<meta property="og:description" content="目標の重量を入れると、バーベルの片側に着けるプレートの構成を計算するWebアプリ。パワーリフティングの競技者本人が、自分で使うために作りました。">
+<meta property="og:image" content="https://mt-tk.com/assets/img/plate-calculator/ogp.jpg">
+<meta property="og:site_name" content="MATSUO DW">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,400&family=Shippori+Mincho+B1:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/product.css">
+</head>
+<body>
+
+<main class="l-product">
+
+  <a class="l-product__back" href="/"><span class="l-product__back-arrow" aria-hidden="true">←</span> Home</a>
+
+  <!-- ============ Hero ============ -->
+  <section class="p-hero">
+    <h1 class="p-hero__title">Plate Calculator</h1>
+    <p class="p-hero__lead">
+      目標の重量を入れると、バーベルの片側に着けるプレートの構成を計算する Web アプリ。<br>
+      パワーリフティングの競技者本人が、自分で使うために作りました。
+    </p>
+
+    <div class="p-actions">
+      <a class="c-btn c-btn--primary" href="https://plate-calculator-zeta.vercel.app/" target="_blank" rel="noopener noreferrer">アプリを触る</a>
+      <a class="c-btn c-btn--ghost" href="https://github.com/Matsutake29/plate-calculator" target="_blank" rel="noopener noreferrer">
+        <svg class="c-btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="18" height="18"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
+    </div>
+
+    <figure class="p-figure p-figure--pair">
+      <div class="p-figure__pair">
+        <img src="/assets/img/plate-calculator/iphone-light.webp" alt="iPhoneのSafariで開いたプレート計算機。明るい画面で、目標104.5kgに対して片側44.75kgのプレート構成が色つきで表示されている" width="414" height="900">
+        <img src="/assets/img/plate-calculator/iphone-dark.webp" alt="同じ画面を暗い表示にしたもの。背景が黒くなり、プレートの色はそのまま見分けられる" width="414" height="900">
+      </div>
+      <figcaption>実際のiPhoneで公開URLを開いたところ。同じ画面が、端末の設定に合わせて明るさを切り替えます。</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ なぜ作ったか ============ -->
+  <section class="p-section p-section--split">
+    <h2 class="p-section__title">なぜ作ったか</h2>
+    <div class="p-section__body">
+      <div class="p-section__text">
+        <p>
+          ジムでバーベルを組むとき、何をどう着けるかは毎回計算が必要です。
+          ちょうど 100kg なら暗算できますが、記録を伸ばすには 2.5kg、1kg と細かく刻んでいくことになります。
+          そして追い込んだ直後の息が上がった状態では、その簡単な計算を間違えます。<strong>プレートの着け間違いは事故につながります。</strong>
+        </p>
+        <p>
+          もうひとつ、パワーリフティングの大会現場では PC 1 台の画面をプロジェクターに映す方式が使われています。
+          Web アプリにすれば、その場にいる全員が手元のスマートフォンから確認できます。
+        </p>
+        <p>
+          このアプリはその両方を出発点にしています。
+          数字を読まなくても色と枚数で確認できること、片手で数タップで済むこと、
+          そして<strong>そのジムにあるプレートで実際に組める重量しか表示しないこと</strong>を優先して作りました。
+        </p>
+      </div>
+      <figure class="p-figure">
+        <img src="/assets/img/plate-calculator/result-142.5kg.webp" alt="目標重量142.5kgに対し、片側61.25kgのプレート構成が色つきの図で表示されている画面" width="493" height="600">
+        <figcaption>142.3 と入力しても 142.5kg に丸まります。画面の数字と計算結果は必ず一致します。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 数字 ============ -->
+  <section class="p-section">
+    <h2 class="p-section__title">数字で見る</h2>
+    <div class="p-section__body">
+      <div class="p-metrics">
+        <div class="p-metric">
+          <p class="p-metric__value">0 <span>ms</span></p>
+          <p class="p-metric__label">Total Blocking Time</p>
+          <p class="p-metric__note">タップした瞬間に反応する</p>
+        </div>
+        <div class="p-metric">
+          <p class="p-metric__value">0</p>
+          <p class="p-metric__label">Cumulative Layout Shift</p>
+          <p class="p-metric__note">読み込み中にボタンが動かない</p>
+        </div>
+        <div class="p-metric">
+          <p class="p-metric__value">32 <span>件</span></p>
+          <p class="p-metric__label">テストケース</p>
+          <p class="p-metric__note">計算が正しいことを機械が毎回チェックする</p>
+        </div>
+        <div class="p-metric">
+          <p class="p-metric__value">68.5 <span>kB</span></p>
+          <p class="p-metric__label">初回の読み込み</p>
+          <p class="p-metric__note">写真1枚ぶんの通信で開き終わる</p>
+        </div>
+      </div>
+
+      <p class="p-note">
+        Lighthouse は4項目すべて100点。本番で読み込む外部ライブラリは React と React DOM の2つだけです。
+        コードを直すたびに、整形・テスト・ビルドの全チェックが18〜20秒で自動的に走ります。
+      </p>
+
+      <figure class="p-figure p-figure--metrics">
+        <img src="/assets/img/plate-calculator/lighthouse.webp" alt="Lighthouseの測定結果。パフォーマンス・ユーザー補助・おすすめの方法・SEOの4項目がすべて100点" width="548" height="148" loading="lazy">
+        <figcaption>Google の Lighthouse による本番URLの計測結果（モバイル）。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 設備に合わせる ============ -->
+  <section class="p-section p-section--split">
+    <h2 class="p-section__title">設備に合わせて変えられる</h2>
+    <div class="p-section__body">
+      <div class="p-section__text">
+        <p>
+          ジムによって置いてあるプレートは違います。25kg のプレートがない、
+          規定の色ではない、そもそも重さの種類が少ない。
+        </p>
+        <p>
+          このアプリは「使えるプレート」を先に設定してから計算します。
+          自分のジムの設備に合わせておけば、<strong>実際に組める構成だけが表示されます</strong>。
+        </p>
+      </div>
+      <figure class="p-figure">
+        <img src="/assets/img/plate-calculator/environment-settings.webp" alt="環境設定を開いた画面。バーの重さ、カラーの有無、使えるプレートの種類を選ぶボタンが並んでいる" width="493" height="700" loading="lazy">
+        <figcaption>使えるプレートを選ぶと、入力できる重量の刻みが自動で変わります（この画面では0.5kg単位）。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 工夫したこと ============ -->
+  <section class="p-section">
+    <h2 class="p-section__title">工夫したこと</h2>
+    <div class="p-section__body">
+      <ul class="p-list">
+        <li>暗い画面でも明るい画面でも、9色すべてのプレートがきちんと見えるように設計した</li>
+        <li>画面を読み上げるソフト（視覚障害のある方が使う）でも操作できるようにした</li>
+        <li>計算部分だけを切り出して自動テストを書き、間違った計算をしていないことを機械が毎回チェックする仕組みにした</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 調べて、測って直した ============ -->
+  <section class="p-section">
+    <h2 class="p-section__title">調べて、測って直した</h2>
+    <div class="p-section__body">
+      <div class="p-section__text">
+      <p>
+        仕様を決めるとき、参考サイトではなく国際連盟（IPF）が出している英語の公式ルールブック（44ページ）を直接読みました。
+        その結果、参考記事をもとに書いていた<strong>仕様の間違いが2つ</strong>見つかりました。
+        記録更新の最小幅は 0.25kg ではなく 0.5kg だったこと。そして 1kg のプレートが実装から抜けていたことです。
+      </p>
+      <p>
+        なぜ 0.5kg が下限なのかは、物理で説明できます。
+        バーベルは左右対称なので、合計重量は「片側に足した分の2倍」でしか動きません。
+        合計 +0.25kg は片側 +0.125kg になりますが、そんなプレートは存在しない。
+        ルールが 0.5kg を下限にしているのは、必然だったわけです。
+      </p>
+      <p>
+        もうひとつ。暗い画面にしたとき、黒いプレートが背景に埋もれて見えなくなっていました。
+        見た目で気づいたのではなく、<strong>コントラスト比を測って見つけた</strong>問題です。
+        測定値は 1.11：1。アクセシビリティの基準（WCAG）が求める 3：1 を大きく下回っていました。
+      </p>
+      <p>
+        対処として「溶けそうな色を個別に指定する」こともできましたが、それでは想定していない色でまた同じことが起きます。
+        全プレート共通の輪郭を1つ定義する形に設計を変えたところ、9色すべて・明暗どちらのモードでも自動的に成立するようになり、
+        <strong>コードはむしろ短くなりました</strong>。
+      </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 技術と開発プロセス ============ -->
+  <section class="p-section">
+    <h2 class="p-section__title">技術と開発プロセス</h2>
+    <div class="p-section__body">
+      <dl class="p-specs">
+        <dt>フレームワーク</dt>
+        <dd>React 19 / TypeScript</dd>
+        <dt>ビルド</dt>
+        <dd>Vite</dd>
+        <dt>スタイル</dt>
+        <dd>Tailwind CSS v4（CSS変数でデザイントークンを管理）</dd>
+        <dt>テスト</dt>
+        <dd>Vitest（32ケース）</dd>
+        <dt>CI</dt>
+        <dd>GitHub Actions（ESLint / Prettier / テスト / ビルド）</dd>
+        <dt>ホスティング</dt>
+        <dd>Vercel</dd>
+      </dl>
+
+      <ul class="p-list">
+        <li>GitHub Flow で運用。main は常にデプロイできる状態を保ち、作業はブランチと Pull Request で進める</li>
+        <li>CI でコード整形・テスト・ビルドの全通過を必須にしている</li>
+        <li>工程ごとに見積時間と実績時間を記録し、差が出た理由を残している</li>
+      </ul>
+
+      <p class="p-note">
+        たとえば README の整備は見積3時間に対して実績1時間でした。
+        設計判断・スクリーンショット・測定値を開発中に記録していたので、「何を書くか」を考える時間がゼロだったためです。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ これから ============ -->
+  <section class="p-section">
+    <h2 class="p-section__title">これから</h2>
+    <div class="p-section__body">
+      <div class="p-section__text">
+        <p>今のバージョンは重量計算だけです。</p>
+        <p>
+          この先は大会の進行支援まで広げたいと思っています。
+          選手名簿や、次の挑戦重量の表示など、個人や事務局の規模で開かれる大会で使えるところまで。
+        </p>
+        <p>作りながら考えている段階なので、形は変わるかもしれません。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Closing CTA ============ -->
+  <section class="p-closing">
+    <h2 class="p-closing__title">実際に触ってみてください</h2>
+    <div class="p-actions">
+      <a class="c-btn c-btn--primary" href="https://plate-calculator-zeta.vercel.app/" target="_blank" rel="noopener noreferrer">アプリを触る</a>
+      <a class="c-btn c-btn--ghost" href="https://github.com/Matsutake29/plate-calculator" target="_blank" rel="noopener noreferrer">
+        <svg class="c-btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="18" height="18"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub でコードを見る
+      </a>
+    </div>
+  </section>
+
+  <footer class="l-product__footer">
+    <small>© 2026 MATSUO DW All Rights Reserved.</small>
+  </footer>
+
+</main>
+
+</body>
+</html>

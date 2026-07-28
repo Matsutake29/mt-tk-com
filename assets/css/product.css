@@ -1,0 +1,431 @@
+/* ======================================
+   mt-tk.com — Product page (下層・作品ページ)
+   style.css を読み込んだ上で追加で読む。
+   変数・リセット・ダークモード・reduced-motion は style.css を継承する。
+   ====================================== */
+
+/* ---- Layout ---- */
+
+.l-product {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 24px 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+/* 段落の余白は各コンポーネントの gap で作る。ブラウザ既定の margin は落とす */
+.l-product p {
+  margin: 0;
+}
+
+.l-product__back {
+  font-family: var(--font-sys);
+  font-size: 0.8125rem;
+  color: var(--c-text-mute);
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  transition: color 0.3s ease;
+}
+
+.l-product__back:hover {
+  color: var(--c-main);
+}
+
+.l-product__back-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.l-product__back:hover .l-product__back-arrow {
+  transform: translateX(-3px);
+}
+
+.l-product__footer {
+  text-align: center;
+  color: var(--c-text-mute);
+  border-top: 1px solid var(--c-border);
+  padding-top: 32px;
+}
+
+.l-product__footer small {
+  font-family: var(--font-sys);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+/* ---- Hero ---- */
+
+.p-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.p-hero__title {
+  font-family: var(--font-en);
+  font-size: 3rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: 0.02em;
+  color: var(--c-main);
+}
+
+.p-hero__lead {
+  font-size: 0.9375rem;
+  line-height: 1.9;
+  margin: 0;
+  color: var(--c-text);
+}
+
+/* ---- Buttons ---- */
+
+.p-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.c-btn {
+  font-family: var(--font-sys);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.c-btn--primary {
+  background: linear-gradient(180deg, #0A4A62 0%, #04384C 100%);
+  color: #FFFFFF;
+}
+
+.c-btn--primary:hover {
+  background: linear-gradient(180deg, #04384C 0%, #032A39 100%);
+  transform: translateY(-2px);
+}
+
+.c-btn--ghost {
+  background: transparent;
+  color: var(--c-main);
+  border: 1px solid var(--c-border);
+}
+
+.c-btn--ghost:hover {
+  border-color: var(--c-main);
+  transform: translateY(-2px);
+}
+
+.c-btn__icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* ---- Section ---- */
+
+.p-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.p-section__title {
+  font-family: var(--font-jp);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.06em;
+  color: var(--c-main);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.p-section__body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 段落は margin ではなく gap で離す（本文の行間と段落間を独立に持つため） */
+.p-section__text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 本文だけに当てる。`.p-section p` にすると詳細度で
+   .p-metric__value / .p-note のサイズ指定を打ち消してしまう */
+.p-section__text p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 2;
+}
+
+.p-section__text strong {
+  font-weight: 600;
+  color: var(--c-main);
+}
+
+/* 本文と図版を横に並べる（PCのみ・SPでは縦積み） */
+.p-section--split .p-section__body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .p-section--split .p-section__body {
+    grid-template-columns: 1fr auto;
+  }
+
+  .p-section--split .p-figure {
+    width: 240px;
+  }
+}
+
+/* ---- List ---- */
+
+.p-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.p-list li {
+  font-size: 0.9375rem;
+  line-height: 1.9;
+  padding-left: 20px;
+  position: relative;
+}
+
+.p-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--c-accent);
+}
+
+/* ---- Figure（スクリーンショット） ----
+   画像はほぼすべてダークモードの画面。ライトモードで見たときに
+   黒い矩形が浮かないよう、意図的に囲ってあると分かる枠を付ける。 */
+
+.p-figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.p-figure img {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--c-border);
+  background: var(--c-sub-bg);
+}
+
+.p-figure figcaption {
+  font-family: var(--font-sys);
+  font-size: 0.75rem;
+  line-height: 1.7;
+  color: var(--c-text-mute);
+}
+
+/* 実機2枚の並置。原寸で置くと縦900pxが2枚でヒーローがスクロールを食うため、
+   「同じ画面が明暗で切り替わる」が伝わる最小サイズに絞る */
+.p-figure__pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  max-width: 420px;
+}
+
+/* Lighthouse は元が横長の切り出し（548px）。引き伸ばすとぼけるので原寸を上限にする */
+.p-figure--metrics img {
+  max-width: 548px;
+}
+
+/* ---- 数値カード ---- */
+
+.p-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap);
+}
+
+.p-metric {
+  background: var(--c-sub-bg);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  min-height: 130px;
+}
+
+/* 主役は数値。ラベルより確実に強く見えるよう、サイズ・字面ともに差を付ける
+   （Cormorant Garamond は数字が細く小さく出るので system font で組む） */
+.p-metric__value {
+  font-family: var(--font-sys);
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--c-main);
+  letter-spacing: -0.01em;
+}
+
+.p-metric__value span {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin-left: 2px;
+}
+
+.p-metric__label {
+  font-family: var(--font-sys);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--c-text-mute);
+}
+
+.p-metric__note {
+  font-family: var(--font-sys);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--c-text-mute);
+}
+
+.p-note {
+  font-family: var(--font-sys);
+  font-size: 0.8125rem;
+  line-height: 1.9;
+  color: var(--c-text-mute);
+}
+
+/* ---- 定義リスト（技術スタック） ---- */
+
+.p-specs {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px 24px;
+  font-size: 0.875rem;
+}
+
+.p-specs dt {
+  font-family: var(--font-sys);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--c-text-mute);
+  padding-top: 2px;
+}
+
+.p-specs dd {
+  margin: 0;
+  font-family: var(--font-sys);
+  line-height: 1.7;
+}
+
+/* ---- 末尾のCTA ---- */
+
+.p-closing {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  text-align: center;
+  padding: 48px 24px;
+  background: var(--c-sub-bg);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+}
+
+.p-closing__title {
+  font-family: var(--font-jp);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.04em;
+  color: var(--c-main);
+}
+
+.p-closing .p-actions {
+  justify-content: center;
+}
+
+/* ======================================
+   Dark Mode
+   （変数は style.css 側で切り替わる。ここは個別調整のみ）
+   ====================================== */
+
+@media (prefers-color-scheme: dark) {
+  .c-btn--primary {
+    background: linear-gradient(180deg, #155A7A 0%, #0A4A62 100%);
+  }
+
+  .c-btn--primary:hover {
+    background: linear-gradient(180deg, #1B6E94 0%, #155A7A 100%);
+  }
+
+  /* Lighthouse のスクリーンショットは白背景なので、
+     ダーク時は枠を締めて浮きを抑える */
+  .p-figure img {
+    background: transparent;
+  }
+}
+
+/* ======================================
+   Responsive: Mobile (<= 767px)
+   ====================================== */
+
+@media (max-width: 767px) {
+  .l-product {
+    padding: 48px 20px 80px;
+    gap: 60px;
+  }
+
+  .p-hero__title { font-size: 2.25rem; }
+
+  .p-actions .c-btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .p-metrics { gap: 12px; }
+
+  .p-metric {
+    padding: 20px 14px;
+    min-height: 118px;
+  }
+
+  .p-metric__value { font-size: 1.625rem; }
+
+  .p-specs {
+    grid-template-columns: 1fr;
+    gap: 4px 0;
+  }
+
+  .p-specs dd { margin-bottom: 12px; }
+
+  .p-closing { padding: 36px 20px; }
+}
