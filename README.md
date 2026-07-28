@@ -40,10 +40,13 @@ mt-tk.com/
 ## デプロイ
 
 ConoHa WING 上で SSH + GitHub Deploy Key + `git pull` 運用。
+**本番が追従しているブランチは `develop`**（`main` ではない）。
 
 ```bash
 ssh user@server "cd ~/public_html/mt-tk.com/ && git pull"
 ```
+
+サーバー上のファイルを直接編集しないこと。未コミットの変更が残ると `git pull` が中断する。
 
 `.htaccess` で `.git` フォルダへのアクセスは 404 に。
 
