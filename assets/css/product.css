@@ -77,7 +77,8 @@
 }
 
 .p-hero__lead {
-  font-size: 0.9375rem;
+  font-family: var(--font-sys);
+  font-size: 1rem;
   line-height: 1.9;
   margin: 0;
   color: var(--c-text);
@@ -165,11 +166,16 @@
 }
 
 /* 本文だけに当てる。`.p-section p` にすると詳細度で
-   .p-metric__value / .p-note のサイズ指定を打ち消してしまう */
+   .p-metric__value / .p-note のサイズ指定を打ち消してしまう
+
+   本文はゴシック（--font-sys）で組む。ハブ側も .c-card__desc / .c-card__label /
+   フッターはゴシックで、「見出しは明朝・説明文はゴシック」が既存のルール。
+   加えて明朝は横画が細く、ダークモードの白抜きで滲んで読みにくくなる。 */
 .p-section__text p {
   margin: 0;
-  font-size: 0.9375rem;
-  line-height: 2;
+  font-family: var(--font-sys);
+  font-size: 1rem;
+  line-height: 1.95;
 }
 
 .p-section__text strong {
@@ -207,7 +213,8 @@
 }
 
 .p-list li {
-  font-size: 0.9375rem;
+  font-family: var(--font-sys);
+  font-size: 1rem;
   line-height: 1.9;
   padding-left: 20px;
   position: relative;
