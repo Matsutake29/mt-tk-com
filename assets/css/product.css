@@ -266,6 +266,36 @@
   max-width: 548px;
 }
 
+/* 操作デモ。GIFだと1MB超で、68.5kBのアプリを紹介するページとしては重すぎたので mp4 にした
+   （同内容で44KB／25分の1）。実機2枚と同じ理由で、原寸390pxのままだと縦が長すぎるため絞る。
+   video は source の media 属性が効かないので、2本を CSS で出し分ける */
+.p-figure--demo {
+  max-width: 260px;
+}
+
+.p-demo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--c-border);
+  background: var(--c-sub-bg);
+}
+
+.p-demo--dark {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .p-demo--light {
+    display: none;
+  }
+
+  .p-demo--dark {
+    display: block;
+  }
+}
+
 /* ---- 数値カード ---- */
 
 .p-metrics {
