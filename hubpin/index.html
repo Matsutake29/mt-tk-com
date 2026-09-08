@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hubpin — 発信を1枚に集約するハブサイト | 松尾 赳治</title>
+<meta name="description" content="ブログ・Zenn・X・GitHub・自作アプリへのリンクを1枚のページに集約するハブサイト。手書きのHTMLで運用していたものを、コードを触らずに更新できる形に作り直しました。Next.js / Supabase 製。">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mt-tk.com/hubpin/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mt-tk.com/hubpin/">
+<meta property="og:title" content="Hubpin — 発信を1枚に集約するハブサイト">
+<meta property="og:description" content="手書きのHTMLで運用していたハブページを、コードを触らずに更新できる形に作り直しました。公開ページは静的配信、編集画面は認証とRLSで保護しています。">
+<meta property="og:image" content="https://mt-tk.com/assets/img/hubpin/ogp.jpg">
+<meta property="og:site_name" content="MATSUO DW">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,400&family=Shippori+Mincho+B1:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/product.css">
+</head>
+<body>
+
+<main class="l-product">
+
+  <a class="l-product__back" href="https://hub.mt-tk.com/matsutake"><span class="l-product__back-arrow" aria-hidden="true">←</span> Home</a>
+
+  <!-- ============ Hero ============ -->
+  <section class="p-hero">
+    <h1 class="p-hero__title">Hubpin</h1>
+    <p class="p-hero__lead">
+      自分の発信（ブログ・Zenn・X・GitHub・自作アプリ）を1枚のページに集約するハブサイト。<br>
+      手書きの HTML で運用していたものを、コードを触らずに更新できる形に作り直しました。
+    </p>
+
+    <div class="p-actions">
+      <a class="c-btn c-btn--primary" href="https://hub.mt-tk.com/login" target="_blank" rel="noopener noreferrer">編集画面を触る（デモ）</a>
+      <a class="c-btn c-btn--ghost" href="https://hub.mt-tk.com/matsutake" target="_blank" rel="noopener noreferrer">公開ページを見る</a>
+      <a class="c-btn c-btn--ghost" href="https://github.com/Matsutake29/hubpin" target="_blank" rel="noopener noreferrer">
+        <svg class="c-btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="18" height="18"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
+    </div>
+
+    <p class="p-note">
+      デモログインはアカウント登録なしで使えます。カードの追加・編集・並び替えと、その結果が公開ページへ反映されるところまで試せます。
+      デモのデータはログインのたびに初期状態へ戻るので、どこをどう触っても大丈夫です。
+    </p>
+
+    <figure class="p-figure">
+      <picture>
+        <source srcset="/assets/img/hubpin/hero-light.webp" media="(prefers-color-scheme: light)" width="768" height="1100">
+        <img src="/assets/img/hubpin/hero-dark.webp" alt="Hubpinの公開ページ。7枚のカードが2列に並び、ブログとZennのカードには最新記事のタイトルが3件ずつ、GitHubのカードにはリポジトリ名が3件入っている" width="768" height="1100">
+      </picture>
+      <figcaption>タブレット幅で開いたところ。同じ画面が、端末の設定に合わせて明るさを切り替えます。</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ なぜ作ったか ============ -->
+  <section class="p-section">
+    <h2 class="p-section__title">なぜ作ったか</h2>
+    <div class="p-section__body">
+      <div class="p-section__text">
+        <p>
+          発信する場所が増えるたびに、リンクをまとめたページを手で書き足していました。
+          2026年5月に作った、手書きの HTML です。
+        </p>
+        <p>
+          7月に、そのページのブログカードだけ古い URL のままになっていることに気づきました。
+          ブログのアドレスを変えたときに張り替えたつもりで、1枚だけ漏れていた。
+          <strong>気づいたのは2ヶ月後で、その間ずっと古いリンクが載ったままでした。</strong>
+        </p>
+        <p>
+          カードが増えるほど、手で直す場所も増えます。
+          このサイトは、<strong>その1枚を直すために HTML を触らなくて済むようにした</strong>ものです。
+        </p>
+      </div>
+      <figure class="p-figure">
+        <picture>
+          <source srcset="/assets/img/hubpin/handwritten-light.webp" media="(prefers-color-scheme: light)" width="1280" height="1156">
+          <img src="/assets/img/hubpin/handwritten-dark.webp" alt="作り直す前の手書きHTML版のハブページ。大小のカードが組み合わさったレイアウトで、Portfolio・Blog・Plate Calculator・X・Zenn・GitHub・Roadmapの7枚が並んでいる" width="1280" height="1156" loading="lazy">
+        </picture>
+        <figcaption>作り直す前。手書きの HTML で、カードを1枚足すたびに HTML と CSS の両方を直していました。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 数字 ============ -->
+  <section class="p-section">
+    <h2 class="p-section__title">数字で見る</h2>
+    <div class="p-section__body">
+      <div class="p-metrics">
+        <div class="p-metric">
+          <p class="p-metric__value">28</p>
+          <p class="p-metric__label">読み込むファイル数</p>
+          <p class="p-metric__note">手書き版は142個。5分の1になった</p>
+        </div>
+        <div class="p-metric">
+          <p class="p-metric__value">187 <span>kB</span></p>
+          <p class="p-metric__label">フォントの通信量</p>
+          <p class="p-metric__note">手書き版は1,539kB。8分の1になった</p>
+        </div>
+        <div class="p-metric">
+          <p class="p-metric__value">3 <span>媒体</span></p>
+          <p class="p-metric__label">自動で取り込む発信元</p>
+          <p class="p-metric__note">ブログ・Zenn・GitHubの新着が1日1回入る</p>
+        </div>
+        <div class="p-metric">
+          <p class="p-metric__value">8 <span>本</span></p>
+          <p class="p-metric__label">自分で見つけて残した改善</p>
+          <p class="p-metric__note">完成後のレビューで出た73件を整理した</p>
+        </div>
+      </div>
+
+      <p class="p-note">
+        上の2つは、手書き版と作り直した版を同じ条件で測った差です。
+        フォントを必要な字だけに絞り、読み込み方を変えたことで、開くまでに流れる通信が減りました。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 載せ替え ============ -->
+  <section class="p-section">
+    <h2 class="p-section__title">動いているものを止めずに載せ替えた</h2>
+    <div class="p-section__body">
+      <div class="p-section__text">
+        <p>
+          手書き版は同じドメインで動いていて、1作目のアプリの説明ページや画像も同居していました。
+          ドメインごと新しいサーバーに向けると、<strong>関係のないページまで一緒に引っ越すことになります。</strong>
+        </p>
+        <p>
+          そこで、新しいものは別のアドレスで公開して、
+          <strong>トップページだけをそこへ転送する</strong>形にしました。
+          同居していたページ・画像・メールはそのまま残っています。
+        </p>
+        <p>
+          見た目は移植せず、組み直しました。
+          手書き版の CSS は「どのカードをどこに置くか」を名前で書いた固定の表になっていて、
+          <strong>カードの枚数がデータで変わる作りとは両立しません。</strong>
+          そのまま持ち込むと、手で直す場所が HTML から CSS に移るだけでした。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ カードの種類 ============ -->
+  <section class="p-section">
+    <h2 class="p-section__title">カードは3種類ある</h2>
+    <div class="p-section__body">
+      <div class="p-section__text">
+        <p>
+          外部へ飛ぶカード、記事の一覧が入るカード、開くと説明が出るカードの3つがあります。
+          <strong>カードの左上にある丸が、その見分けになっています。</strong>
+          塗りつぶしなら外部へ飛び、中が空いていればその場で開きます。
+        </p>
+        <p>
+          記事の一覧が入るカードは、ブログ・Zenn・GitHub から1日1回まとめて取り込みます。
+          <strong>新しく書いたものは、こちらが何もしなくても載ります。</strong>
+        </p>
+      </div>
+      <figure class="p-figure">
+        <img src="/assets/img/hubpin/card-types-dark.webp" alt="デモ用アカウントの公開ページ。上段に外部リンクのカードと記事一覧のカードが並び、下段のメモカードが開いて説明文が表示されている" width="1440" height="603" loading="lazy">
+        <figcaption>デモ用アカウントのページ。下段の「メモ」を開いたところです。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 見えないところ ============ -->
+  <section class="p-section">
+    <h2 class="p-section__title">画面に出ないところを確かめた</h2>
+    <div class="p-section__body">
+      <div class="p-section__text">
+        <p>
+          このサイトは自分1人で使いますが、<strong>データの作りは複数人が使う前提</strong>にしてあります。
+          そうすると「他人のカードを書き換えられないこと」を確かめる必要が出てきます。
+        </p>
+        <p>
+          データベース側に、<strong>持ち主でなければ触れない規則</strong>を入れました。
+          規則が効いていることは画面で確かめられます。
+          他人のカードを書き換えようとすると、<strong>エラーにならず「0件変更」で終わります。</strong>
+          自分のカードなら同じ操作で7件変わります。
+        </p>
+        <p>
+          確かめ方は、書き換えを試すSQLに「<strong>期待: 0行（エラーではない）</strong>」とコメントを書いて実行し、
+          結果が想定どおりかを見る形にしました。
+          はじめから出来ていたわけではありません。
+          途中で規則の抜けが見つかり、塞いでから、塞がっていることをこの方法で確かめました。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 入れなかったもの ============ -->
+  <section class="p-section">
+    <h2 class="p-section__title">入れなかったものの話</h2>
+    <div class="p-section__body">
+      <div class="p-section__text">
+        <p>
+          安全のための設定を3つ入れました。同時に、<strong>もう1つの設定はあえて入れませんでした。</strong>
+          入れると仕組みが複雑になり、<strong>このサイトの売りである「あらかじめ作っておいたページをそのまま配る」やり方と噛み合わなくなる</strong>ためです。
+          入れた3つは、どのページでも同じ値を返すだけなので、その配り方と両立します。
+        </p>
+        <p>
+          入れた設定の1つは「このページを他人のサイトに埋め込ませない」というものでした。
+          守りたかったのはログイン画面1つです。
+        </p>
+        <p>
+          <strong>その半月後、この掲載ページ用の画面写真を撮ろうとして、自分がその設定に止められました。</strong>
+          撮影のために自分のページを埋め込もうとして、拒否されたためです。
+          設定を入れたことより、<strong>効いていることが自分で分かったこと</strong>のほうが収穫でした。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 技術と開発プロセス ============ -->
+  <section class="p-section">
+    <h2 class="p-section__title">技術と開発プロセス</h2>
+    <div class="p-section__body">
+      <dl class="p-specs">
+        <dt>フレームワーク</dt>
+        <dd>Next.js 16（App Router）/ React 19 / TypeScript</dd>
+        <dt>データベース・認証</dt>
+        <dd>Supabase（PostgreSQL）</dd>
+        <dt>外部フィード取得</dt>
+        <dd>Vercel Cron（1日1回）/ RSS・REST API</dd>
+        <dt>スタイル</dt>
+        <dd>Tailwind CSS v4</dd>
+        <dt>テスト</dt>
+        <dd>Vitest / React Testing Library</dd>
+        <dt>CI</dt>
+        <dd>GitHub Actions（ESLint / Prettier / テスト / ビルド）</dd>
+        <dt>ホスティング</dt>
+        <dd>Vercel</dd>
+      </dl>
+
+      <ul class="p-list">
+        <li>要件を先に決めて文書に残し、作る範囲を確定させてから着手した</li>
+        <li>1つの機能につき1つの Pull Request。自動チェックが全部通らないと反映できない設定にしている</li>
+        <li>工程ごとに見積時間と実績時間を記録し、差が出た理由を残している</li>
+        <li>完成後に6つの観点で自分のコードを見直し、73件の指摘を8本の課題に整理した。うち安全に関わる1件はその日のうちに直した</li>
+      </ul>
+
+      <p class="p-note">
+        課題を8本残したままにしているのは、直し切れなかったからではありません。
+        1件ずつ「どのファイルの何行目か」「なぜ問題か」「どれくらいかかるか」まで書いてあります。
+        テストについても、本数ではなく「何を守っているか」を README に書くようにしました。
+        通っている本数より、通っていない範囲が分かることのほうが大事だと考えています。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ これから ============ -->
+  <section class="p-section">
+    <h2 class="p-section__title">これから</h2>
+    <div class="p-section__body">
+      <div class="p-section__text">
+        <p>今は自分1人で使っていますが、データの作りは複数人が使う前提で組んであります。</p>
+        <p>
+          この先やりたいのは、カードをドラッグして並び替えられるようにすることと、
+          ページごとの画像を自動で作ることです。
+          完成後の見直しで出た改善も、8本を課題として残してあります。
+        </p>
+        <p>作りながら決めている部分が多いので、形は変わるかもしれません。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Closing CTA ============ -->
+  <section class="p-closing">
+    <h2 class="p-closing__title">実際に触ってみてください</h2>
+    <div class="p-actions">
+      <a class="c-btn c-btn--primary" href="https://hub.mt-tk.com/login" target="_blank" rel="noopener noreferrer">編集画面を触る（デモ）</a>
+      <a class="c-btn c-btn--ghost" href="https://github.com/Matsutake29/hubpin" target="_blank" rel="noopener noreferrer">
+        <svg class="c-btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="18" height="18"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub でコードを見る
+      </a>
+    </div>
+  </section>
+
+  <footer class="l-product__footer">
+    <small>&copy; 2026 MATSUO DW All Rights Reserved.</small>
+  </footer>
+
+</main>
+
+</body>
+</html>
